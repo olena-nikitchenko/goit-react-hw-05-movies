@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Searchbar } from '../../components/Searchbar/Searchbar.jsx';
 import { fetchSearchMovies } from '../../api/api.js';
 import { Loader } from 'components/Loader/Loader';
-import { MovieLayout } from '../../components/MovieLayout/MovieLayout.jsx';
+import { MoviesLayout } from '../../components/MoviesLayout/MoviesLayout.jsx';
 
 export default function Movies() {
   const [status, setStatus] = useState('idle');
@@ -54,7 +54,7 @@ export default function Movies() {
 
       {status === 'pending' && <Loader />}
 
-      {searchMovie.length > 0 && <MovieLayout movies={searchMovie} />}
+      {searchMovie.length > 0 && <MoviesLayout movies={searchMovie} />}
     </main>
   );
 }

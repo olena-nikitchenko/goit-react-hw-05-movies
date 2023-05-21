@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchMoviesTrend } from '../../api/api.js';
 import { Container } from './Home.styled.js';
-import { MovieLayout } from '../../components/MovieLayout/MovieLayout.jsx';
+import { MoviesLayout } from '../../components/MoviesLayout/MoviesLayout.jsx';
 
 export default function Home() {
   const [list, setList] = useState([]);
@@ -31,7 +31,7 @@ export default function Home() {
     <Container>
       <h2>Movies are trending today</h2>
       {list.length > 0 ? (
-        <MovieLayout movies={list} />
+        <MoviesLayout movies={list} />
       ) : (
         <p>No trending movies available.</p>
       )}

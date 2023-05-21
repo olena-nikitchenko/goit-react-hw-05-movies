@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-export const MovieLayout = ({ movies }) => {
+export const MoviesLayout = ({ movies }) => {
   const location = useLocation();
 
   return (
