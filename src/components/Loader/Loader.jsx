@@ -6,14 +6,9 @@ export const Loader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    setIsLoading(true);
   }, []);
+
   return (
     <BallTriangleContainer>
       {isLoading ? (
