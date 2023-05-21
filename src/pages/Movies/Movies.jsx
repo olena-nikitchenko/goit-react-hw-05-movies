@@ -1,20 +1,19 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { Link, useLocation } from 'react-router-dom';
 import { Searchbar } from '../../components/Searchbar/Searchbar.jsx';
 import { fetchSearchMovies } from '../../api/api.js';
 import { Loader } from 'components/Loader/Loader';
+import { MoviesLayout } from '../../components/MoviesLayout/MoviesLayout.jsx';
 
 export default function Movies() {
-  const location = useLocation();
   const [status, setStatus] = useState('idle');
-  const [seachMovie, setSeachMovie] = useState('');
+  const [searchMovie, setSearchMovie] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
-  const changeFilter = seachMovie => {
-    setSearchParams(seachMovie !== '' ? { query: seachMovie } : {});
+  const changeFilter = searchMovie => {
+    setSearchParams(searchMovie !== '' ? { query: searchMovie } : {});
   };
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export default function Movies() {
           signal: controller.signal,
         });
 
-        setSeachMovie(moviesItems);
+        setSearchMovie(moviesItems);
         setStatus('resolved');
       } catch (error) {
         toast.error('Something went wrong. Please, reload the page.');
@@ -55,17 +54,7 @@ export default function Movies() {
 
       {status === 'pending' && <Loader />}
 
-      {seachMovie.length > 0 && (
-        <ul>
-          {seachMovie.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      {searchMovie.length > 0 && <MoviesLayout movies={searchMovie} />}
     </main>
   );
 }
