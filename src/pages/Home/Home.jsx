@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { fetchMoviesTrend } from '../../api/api.js';
-import { Container, CardWrapper } from './Home.styled.js';
+import { Container } from './Home.styled.js';
+import { MovieLayout } from '../../components/MovieLayout/MovieLayout.jsx';
 
 export default function Home() {
   const [list, setList] = useState([]);
@@ -30,11 +30,11 @@ export default function Home() {
   return (
     <Container>
       <h2>Movies are trending today</h2>
-      {list.map(({ id, title }) => (
-        <CardWrapper key={id}>
-          <Link to={`/movies/${id}`}>{title}</Link>
-        </CardWrapper>
-      ))}
+      {list.length > 0 ? (
+        <MovieLayout movies={list} />
+      ) : (
+        <p>No trending movies available.</p>
+      )}
       <ToastContainer position="top-right" autoClose={3000} />
     </Container>
   );
