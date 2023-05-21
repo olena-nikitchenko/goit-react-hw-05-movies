@@ -21,7 +21,7 @@ export default function MovieDetails() {
           signal: controller.signal,
         });
 
-        if (!movieCardDetails) {
+        if (Object.keys(movieCardDetails).length === 0) {
           toast.error('Not found');
           setStatus('rejected');
           return;
