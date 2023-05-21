@@ -28,7 +28,7 @@ export default function Cast() {
           signal: controller.signal,
         });
 
-        if (castMovie === []) {
+        if (castMovie.length === 0) {
           toast.error('Not found');
           setStatus('rejected');
           return;
