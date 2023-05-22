@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import {
   SearchForm,
   Wrapper,
+  Button,
   Icon,
   SearchFormInput,
 } from 'components/Searchbar/Searchbar.styled';
@@ -26,19 +27,9 @@ export function Searchbar({ onSubmit }) {
     setSearchMovie('');
   };
 
-  const handleSearchIconClick = () => {
-    if (searchMovie.trim() === '') {
-      toast.error(`Sorry, movie not found. Please try again.`);
-      return;
-    }
-    onSubmit(searchMovie);
-    setSearchMovie('');
-  };
-
   return (
     <Wrapper>
       <SearchForm onSubmit={handleSearchSubmit}>
-        <Icon onClick={handleSearchIconClick} />
         <SearchFormInput
           type="text"
           autoComplete="off"
@@ -47,6 +38,9 @@ export function Searchbar({ onSubmit }) {
           value={searchMovie}
           onChange={handleSearchWord}
         />
+        <Button type="submit">
+          <Icon />
+        </Button>
       </SearchForm>
     </Wrapper>
   );
